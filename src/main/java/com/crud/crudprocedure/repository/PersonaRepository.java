@@ -21,4 +21,16 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
     @Query(value = "select * from sp_nombre_persona(:nombreIn)", nativeQuery = true)
     List<Persona> spNombrePersona(@Param("nombreIn") String nombreIN);
+
+    @Query(value = "select * from sp_documento_persona(:documentoIn)", nativeQuery = true)
+    List<Persona> spDocumentoPersona(@Param("documentoIn") String documentoIN);
+
+    @Query(value = "select from sp_save_persona(:documentoIn, :nombreIn, :apaternoIn, :amaternoIn, :sexoIn)", nativeQuery = true)
+    String spSavePersona(
+        @Param("documentoIn") String documentoIN,
+        @Param("nombreIn") String nombreIN,
+        @Param("apaternoIn") String apaternoIN,
+        @Param("amaternoIn") String amaternoIN,
+        @Param("sexoIn") Character sexoIN
+    );
 }

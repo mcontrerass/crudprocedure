@@ -26,4 +26,12 @@ public class PersonaService {
     public List<Persona> getByNombre(String nombre) {
         return personaRepository.spNombrePersona(nombre);
     }
+
+    public List<Persona> getByDocumento(String documento) {
+        return personaRepository.spDocumentoPersona(documento);
+    }
+
+    public String savePersona(Persona persona) {
+        return personaRepository.spSavePersona(persona.getDocumento(), persona.getNombre(), persona.getApaterno(), persona.getAmaterno(), persona.getSexo());
+    }
 }

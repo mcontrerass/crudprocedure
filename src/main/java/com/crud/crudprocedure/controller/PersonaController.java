@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -39,5 +41,17 @@ public class PersonaController {
     public ResponseEntity<List<Persona>> verNombre(@PathVariable("nombre") String nombre) {
         List<Persona> persona = personaService.getByNombre(nombre);
         return new ResponseEntity(persona, HttpStatus.OK);
+    }
+
+    @GetMapping("/verdocumento/{documento}")
+    public ResponseEntity<List<Persona>> verDocumento(@PathVariable("documento") String documento) {
+        List<Persona> persona = personaService.getByDocumento(documento);
+        return new ResponseEntity(persona, HttpStatus.OK);
+    }
+
+    @PostMapping("/savepersona")
+    public ResponseEntity<?> savePersona(@RequestBody Persona persona) {
+        personaService.savePersona(persona);
+        return new ResponseEntity<>("Registro guardado", HttpStatus.CREATED);
     }
 }
